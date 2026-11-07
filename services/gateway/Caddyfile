@@ -1,0 +1,74 @@
+# Gateway: the one public entry to Helix Foundry on Railway.
+#
+# Foundry's local build has no sign-in ("anyone who can reach it controls
+# it") and answers only http://localhost:3000. This proxy
+#   - asks for a password (HTTP basic auth) before anything reaches the site;
+#   - presents each request to the site as localhost:3000 (Host, and Origin
+#     for same-origin writes), which the site's /papi checks;
+#   - refuses cross-site requests, which browsers send with cached basic-auth
+#     credentials too;
+#   - passes Foundry's MCP and HTTP Ask (/mcp, /v1/ontologies/...) straight to
+#     Foundry, which checks their owner bearer token itself (a client can send
+#     only one Authorization header), when FOUNDRY_AGENT_ENDPOINTS is on.
+#
+#   https://{domain}/_gateway/health    -> this proxy (Railway healthcheck)
+#   https://{domain}/mcp, /v1/ontologies/* -> Foundry :8081 (bearer token)
+#   https://{domain}/*                  -> basic auth -> Site :3000
+{
+	admin off
+	persist_config off
+	auto_https off
+	servers {
+		# Railway's edge terminates TLS and forwards X-Forwarded-* headers.
+		trusted_proxies static private_ranges 100.0.0.0/8
+	}
+}
+
+:{$PORT:8080} {
+	handle /_gateway/health {
+		respond "ok" 200
+	}
+
+	@agents {
+		path /mcp /v1/ontologies/*
+		expression `"{$FOUNDRY_AGENT_ENDPOINTS}" == "on"`
+	}
+	handle @agents {
+		reverse_proxy {$FOUNDRY_API_UPSTREAM} {
+			flush_interval -1
+			lb_try_duration 10s
+			lb_try_interval 500ms
+		}
+	}
+
+	# Same-origin requests from this site's pages, custom domains included
+	# (the comparison uses the request's own Host).
+	@cross_site {
+		header Origin *
+		not header Origin https://{host}
+	}
+	handle @cross_site {
+		respond "Cross-origin request refused" 403
+	}
+
+	@has_origin header Origin *
+
+	handle {
+		basic_auth {
+			{$BASIC_AUTH_USERNAME} {$BASIC_AUTH_HASH}
+		}
+		# The site never needs the password.
+		request_header -Authorization
+		# Only same-origin requests get here (above): the site's own origin check
+		# compares Origin with http://localhost:3000.
+		request_header @has_origin Origin http://localhost:3000
+		header -Server
+		reverse_proxy {$FOUNDRY_SITE_UPSTREAM} {
+			header_up Host localhost:3000
+			header_down Location ^http://localhost:3000 https://{host}
+			flush_interval -1
+			lb_try_duration 10s
+			lb_try_interval 500ms
+		}
+	}
+}
