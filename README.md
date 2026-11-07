@@ -1,6 +1,6 @@
 # Deploy and Host Helix Foundry with Railway
 
-[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/helix-foundry-0-1-ontology-and-kn?referralCode=20H68q)
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/helix-foundry-01-ontology-and-knowledge-?referralCode=20H68q)
 
 Helix Foundry is HelixDB's open-source (Apache-2.0) app for turning company data into one graph: connect databases, tools and documents, let an agent draft an ontology over them, load it into HelixDB, then explore it and ask questions with cited answers. This community template runs Foundry's 0.1 release images with a password-protected URL and the Acme Corp sample.
 
