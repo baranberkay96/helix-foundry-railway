@@ -1,10 +1,10 @@
-# Helix Foundry 0.1 Ontology and Knowledge Graph from Your Data — Railway template spec
+# Helix Foundry Ontology and Knowledge Graph from Your Data — Railway template spec
 
 ## Listing
 
 | Field | Value |
 |---|---|
-| Name | **Helix Foundry 0.1 Ontology and Knowledge Graph from Your Data** (`0.1` = major.minor of the release images the pinned commit runs: site 0.1.3, foundry 0.1.2, agent 0.1.1; upstream has no GitHub releases, but it does publish versioned images, so the snapshot label "2026.11" was not needed) |
+| Name | **Helix Foundry Ontology and Knowledge Graph from Your Data** (`0.1` = major.minor of the release images the pinned commit runs: site 0.1.3, foundry 0.1.2, agent 0.1.1; upstream has no GitHub releases, but it does publish versioned images, so the snapshot label "2026.11" was not needed) |
 | Description | Connect databases and documents; an AI agent maps them into one graph. (70 chars) |
 | Category | AI/ML |
 | Tags | helix-foundry, helixdb, ontology, knowledge-graph, graph-database, ai-agents, mcp, data-integration |

@@ -1,515 +1,516 @@
 {
- "name": "Helix Foundry 0.1 Ontology and Knowledge Graph from Your Data",
- "description": "Connect databases and documents; an AI agent maps them into one graph.",
- "category": "AI/ML",
- "tags": [
-  "helix-foundry",
-  "helixdb",
-  "ontology",
-  "knowledge-graph",
-  "graph-database",
-  "ai-agents",
-  "mcp",
-  "data-integration"
- ],
- "image": "https://cdn.jsdelivr.net/npm/lucide-static@1.59.0/icons/waypoints.svg",
- "upstream": {
-  "repo": "HelixDB/helix-foundry",
-  "version": "commit c900024caa1c65157604d7ee84b1f60d7fbfc00d (2026-11-06, main); its local/compose.yaml runs foundry 0.1.2, foundry-site 0.1.3, ontology-agent 0.1.1, HelixDB v0.0.14 (foundry and site images built from c7de40515f56, which differs from the pin only in compose/README/test files)",
-  "images": {
-   "site": "ghcr.io/helixdb/foundry-site:0.1.3@sha256:ac69e52df43e99b5c49879399f1f20f475a8fcdf7f43e66f27ca6b6b11da74ae",
-   "foundry": "ghcr.io/helixdb/foundry:0.1.2@sha256:5adf4ca93c2b53661275ff3b9a4c5054d8ee42acfa569c4dcbfd2c8b6b27ba62",
-   "agent": "ghcr.io/helixdb/ontology-agent:0.1.1@sha256:d5a543bee8d9f403fa898ad5773b9a3d95b394f31396b36ec2b13448af07faa8",
-   "helix": "ghcr.io/helixdb/helixdb:v0.0.14@sha256:1470a3bce07866367f1d2a5b250ec9c3244d62356ac27d537023ef5492a8f62a",
-   "storage": "chrislusf/seaweedfs:4.47@sha256:ce9e796f1fe6f06968f4c04bdaf8f678dad9c8acdfef3d244133d71bfa6bf882",
-   "mysql": "mysql:8.0.46@sha256:7dcddc01f13bab2f15cde676d44d01f61fc9f99fe7785e86196dfc07d358ae2b",
-   "postgres": "ghcr.io/railwayapp-templates/postgres-ssl:18@sha256:4fc833b43d2aaf6ecc9b18615f5533602b723a32d0e2efe2dae8ca0f7217c863",
-   "caddy": "caddy:2.11.9-alpine@sha256:0bbb055bda6793c999bde78b1b5ce3e89f829fb031af2cf50056ea1246559fee"
+  "name": "Helix Foundry Ontology and Knowledge Graph from Your Data",
+  "idSeed": "Helix Foundry 0.1 Ontology and Knowledge Graph from Your Data",
+  "description": "Connect databases and documents; an AI agent maps them into one graph.",
+  "category": "AI/ML",
+  "tags": [
+    "helix-foundry",
+    "helixdb",
+    "ontology",
+    "knowledge-graph",
+    "graph-database",
+    "ai-agents",
+    "mcp",
+    "data-integration"
+  ],
+  "image": "https://cdn.jsdelivr.net/npm/lucide-static@1.59.0/icons/waypoints.svg",
+  "upstream": {
+    "repo": "HelixDB/helix-foundry",
+    "version": "commit c900024caa1c65157604d7ee84b1f60d7fbfc00d (2026-11-06, main); its local/compose.yaml runs foundry 0.1.2, foundry-site 0.1.3, ontology-agent 0.1.1, HelixDB v0.0.14 (foundry and site images built from c7de40515f56, which differs from the pin only in compose/README/test files)",
+    "images": {
+      "site": "ghcr.io/helixdb/foundry-site:0.1.3@sha256:ac69e52df43e99b5c49879399f1f20f475a8fcdf7f43e66f27ca6b6b11da74ae",
+      "foundry": "ghcr.io/helixdb/foundry:0.1.2@sha256:5adf4ca93c2b53661275ff3b9a4c5054d8ee42acfa569c4dcbfd2c8b6b27ba62",
+      "agent": "ghcr.io/helixdb/ontology-agent:0.1.1@sha256:d5a543bee8d9f403fa898ad5773b9a3d95b394f31396b36ec2b13448af07faa8",
+      "helix": "ghcr.io/helixdb/helixdb:v0.0.14@sha256:1470a3bce07866367f1d2a5b250ec9c3244d62356ac27d537023ef5492a8f62a",
+      "storage": "chrislusf/seaweedfs:4.47@sha256:ce9e796f1fe6f06968f4c04bdaf8f678dad9c8acdfef3d244133d71bfa6bf882",
+      "mysql": "mysql:8.0.46@sha256:7dcddc01f13bab2f15cde676d44d01f61fc9f99fe7785e86196dfc07d358ae2b",
+      "postgres": "ghcr.io/railwayapp-templates/postgres-ssl:18@sha256:4fc833b43d2aaf6ecc9b18615f5533602b723a32d0e2efe2dae8ca0f7217c863",
+      "caddy": "caddy:2.11.9-alpine@sha256:0bbb055bda6793c999bde78b1b5ce3e89f829fb031af2cf50056ea1246559fee"
+    },
+    "sample": "local/acme/acme.sql at c900024c, sha256 bce83a6d2ea1bbd815fc72e7d2926b16bb1337e67437e95a3fdeb54c19a053d1",
+    "checked": "2026-11-07"
   },
-  "sample": "local/acme/acme.sql at c900024c, sha256 bce83a6d2ea1bbd815fc72e7d2926b16bb1337e67437e95a3fdeb54c19a053d1",
-  "checked": "2026-11-07"
- },
- "services": {
-  "Gateway": {
-   "icon": "https://cdn.jsdelivr.net/npm/lucide-static@1.59.0/icons/shield-check.svg",
-   "source": {
-    "repo": "baranberkay96/helix-foundry-railway",
-    "rootDirectory": "/services/gateway"
-   },
-   "startCommand": null,
-   "preDeployCommand": null,
-   "healthcheckPath": "/_gateway/health",
-   "healthcheckTimeout": 300,
-   "restartPolicyType": "ALWAYS",
-   "numReplicas": 1,
-   "cronSchedule": null,
-   "publicDomain": true,
-   "targetPort": 8080,
-   "tcpProxy": null,
-   "volume": null,
-   "variables": {
-    "FOUNDRY_GATEWAY_IMAGE": {
-     "defaultValue": "caddy:2.11.9-alpine@sha256:0bbb055bda6793c999bde78b1b5ce3e89f829fb031af2cf50056ea1246559fee",
-     "description": "Caddy image this service's Docker build starts FROM (Railway passes it as a build argument).",
-     "required": false
+  "services": {
+    "Gateway": {
+      "icon": "https://cdn.jsdelivr.net/npm/lucide-static@1.59.0/icons/shield-check.svg",
+      "source": {
+        "repo": "baranberkay96/helix-foundry-railway",
+        "rootDirectory": "/services/gateway"
+      },
+      "startCommand": null,
+      "preDeployCommand": null,
+      "healthcheckPath": "/_gateway/health",
+      "healthcheckTimeout": 300,
+      "restartPolicyType": "ALWAYS",
+      "numReplicas": 1,
+      "cronSchedule": null,
+      "publicDomain": true,
+      "targetPort": 8080,
+      "tcpProxy": null,
+      "volume": null,
+      "variables": {
+        "FOUNDRY_GATEWAY_IMAGE": {
+          "defaultValue": "caddy:2.11.9-alpine@sha256:0bbb055bda6793c999bde78b1b5ce3e89f829fb031af2cf50056ea1246559fee",
+          "description": "Caddy image this service's Docker build starts FROM (Railway passes it as a build argument).",
+          "required": false
+        },
+        "PORT": {
+          "defaultValue": "8080",
+          "description": "Port the gateway listens on (public domain target and healthcheck).",
+          "required": false
+        },
+        "BASIC_AUTH_USERNAME": {
+          "defaultValue": "admin",
+          "description": "User name for the browser's sign-in prompt. Letters, digits and . _ @ - (anything else falls back to admin).",
+          "required": false
+        },
+        "BASIC_AUTH_PASSWORD": {
+          "defaultValue": "${{secret(24, \"abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789\")}}",
+          "description": "Password for the browser's sign-in prompt, generated at deploy. Foundry has no sign-in of its own, so this protects the whole install; at least 12 characters or the gateway refuses to start.",
+          "required": false
+        },
+        "FOUNDRY_AGENT_ENDPOINTS": {
+          "defaultValue": "on",
+          "description": "on: /mcp and /v1/ontologies/... go straight to Foundry, which requires FOUNDRY_LOCAL_TOKEN as a bearer token (for Claude Code, Cursor and other MCP clients). off: they stay behind the password like the rest.",
+          "required": false
+        },
+        "FOUNDRY_SITE_UPSTREAM": {
+          "defaultValue": "${{Site.RAILWAY_PRIVATE_DOMAIN}}:3000",
+          "description": "Foundry web app on the private network.",
+          "required": false
+        },
+        "FOUNDRY_API_UPSTREAM": {
+          "defaultValue": "${{Foundry.RAILWAY_PRIVATE_DOMAIN}}:8081",
+          "description": "Foundry API (MCP and HTTP Ask) on the private network.",
+          "required": false
+        },
+        "RAILWAY_DEPLOYMENT_DRAINING_SECONDS": {
+          "defaultValue": "15",
+          "description": "Seconds between SIGTERM and SIGKILL on redeploy.",
+          "required": false
+        }
+      }
     },
-    "PORT": {
-     "defaultValue": "8080",
-     "description": "Port the gateway listens on (public domain target and healthcheck).",
-     "required": false
+    "Site": {
+      "icon": "https://cdn.jsdelivr.net/npm/lucide-static@1.59.0/icons/app-window.svg",
+      "source": {
+        "repo": "baranberkay96/helix-foundry-railway",
+        "rootDirectory": "/services/site"
+      },
+      "startCommand": null,
+      "preDeployCommand": null,
+      "healthcheckPath": "/ask",
+      "healthcheckTimeout": 300,
+      "restartPolicyType": "ALWAYS",
+      "numReplicas": 1,
+      "cronSchedule": null,
+      "publicDomain": false,
+      "targetPort": null,
+      "tcpProxy": null,
+      "volume": null,
+      "variables": {
+        "FOUNDRY_SITE_IMAGE": {
+          "defaultValue": "ghcr.io/helixdb/foundry-site:0.1.3@sha256:ac69e52df43e99b5c49879399f1f20f475a8fcdf7f43e66f27ca6b6b11da74ae",
+          "description": "Foundry web app image this service's Docker build starts FROM (HelixDB's release image, unchanged). Upgrade it together with FOUNDRY_IMAGE and FOUNDRY_AGENT_IMAGE on Foundry.",
+          "required": false
+        },
+        "PORT": {
+          "defaultValue": "3000",
+          "description": "Port the web app listens on (healthcheck).",
+          "required": false
+        },
+        "HOSTNAME": {
+          "defaultValue": "::",
+          "description": "Bind address of the Next.js server (:: = IPv4 and IPv6 on the private network).",
+          "required": false
+        },
+        "HELIX_WFE_ORIGIN": {
+          "defaultValue": "http://${{Foundry.RAILWAY_PRIVATE_DOMAIN}}:8081",
+          "description": "Foundry API on the private network; the web app's /papi forwards to it with the owner token.",
+          "required": false
+        },
+        "FOUNDRY_ORIGIN": {
+          "defaultValue": "http://localhost:3000",
+          "description": "The origin the web app believes it is served at. Keep it: the local build accepts only loopback origins, and the Gateway presents every request as localhost:3000.",
+          "required": false
+        },
+        "FOUNDRY_LOCAL_TOKEN": {
+          "defaultValue": "${{Foundry.FOUNDRY_LOCAL_TOKEN}}",
+          "description": "Owner token the web app sends to Foundry (set on Foundry).",
+          "required": false
+        },
+        "FOUNDRY_SAMPLE_DB_HOST": {
+          "defaultValue": "${{Acme DB.RAILWAY_PRIVATE_DOMAIN}}",
+          "description": "Host that Use the sample connects to (the Acme DB service), written into the web app at start in place of upstream's acme-db.",
+          "required": false
+        },
+        "NEXT_TELEMETRY_DISABLED": {
+          "defaultValue": "1",
+          "description": "No Next.js telemetry.",
+          "required": false
+        },
+        "RAILWAY_DEPLOYMENT_DRAINING_SECONDS": {
+          "defaultValue": "15",
+          "description": "Seconds between SIGTERM and SIGKILL on redeploy.",
+          "required": false
+        }
+      }
     },
-    "BASIC_AUTH_USERNAME": {
-     "defaultValue": "admin",
-     "description": "User name for the browser's sign-in prompt. Letters, digits and . _ @ - (anything else falls back to admin).",
-     "required": false
+    "Foundry": {
+      "icon": "https://cdn.jsdelivr.net/npm/lucide-static@1.59.0/icons/workflow.svg",
+      "source": {
+        "repo": "baranberkay96/helix-foundry-railway",
+        "rootDirectory": "/services/foundry"
+      },
+      "startCommand": null,
+      "preDeployCommand": null,
+      "healthcheckPath": "/readyz",
+      "healthcheckTimeout": 1200,
+      "restartPolicyType": "ALWAYS",
+      "numReplicas": 1,
+      "cronSchedule": null,
+      "publicDomain": false,
+      "targetPort": null,
+      "tcpProxy": null,
+      "volume": {
+        "mountPath": "/work"
+      },
+      "variables": {
+        "FOUNDRY_IMAGE": {
+          "defaultValue": "ghcr.io/helixdb/foundry:0.1.2@sha256:5adf4ca93c2b53661275ff3b9a4c5054d8ee42acfa569c4dcbfd2c8b6b27ba62",
+          "description": "Foundry backend image the foundry binary and its config are copied from at build (HelixDB's release, unchanged).",
+          "required": false
+        },
+        "FOUNDRY_AGENT_IMAGE": {
+          "defaultValue": "ghcr.io/helixdb/ontology-agent:0.1.1@sha256:d5a543bee8d9f403fa898ad5773b9a3d95b394f31396b36ec2b13448af07faa8",
+          "description": "Ontology agent image this service's Docker build starts FROM (HelixDB's release, unchanged).",
+          "required": false
+        },
+        "PORT": {
+          "defaultValue": "8083",
+          "description": "Port of Foundry's health listener, which Railway health-checks (/readyz). The API listens on 8081 (private).",
+          "required": false
+        },
+        "FOUNDRY_LOCAL_TOKEN": {
+          "defaultValue": "${{secret(64, \"0123456789abcdef\")}}",
+          "description": "Owner token, generated at deploy: the web app sends it to Foundry, and MCP clients send it as Authorization: Bearer. Whoever has it controls this install; at least 32 characters.",
+          "required": false
+        },
+        "FOUNDRY_CONNECTOR_KEY": {
+          "defaultValue": "${{secret(64, \"0123456789abcdef\")}}",
+          "description": "Key that seals every database password and API key given to Foundry, generated at deploy. Never change it: credentials sealed with it become unreadable. Back it up with your data.",
+          "required": false
+        },
+        "FOUNDRY_S3_SECRET": {
+          "defaultValue": "${{Storage.FOUNDRY_S3_SECRET}}",
+          "description": "Secret of the store's foundry identity (set on Storage).",
+          "required": false
+        },
+        "HELIX_DB_DSN": {
+          "defaultValue": "root:${{MySQL.MYSQL_ROOT_PASSWORD}}@tcp(${{MySQL.MYSQLHOST}}:${{MySQL.MYSQLPORT}})/${{MySQL.MYSQL_DATABASE}}?parseTime=true&multiStatements=true",
+          "description": "Foundry's MySQL database (Go DSN). Foundry migrates it at every start.",
+          "required": false
+        },
+        "HELIX_LOCAL__SITE_ORIGIN": {
+          "defaultValue": "https://${{Gateway.RAILWAY_PUBLIC_DOMAIN}}",
+          "description": "Public URL of Foundry (the Gateway): links given to agents start here, and MCP and HTTP Ask answer only for this host. Change it when you add a custom domain.",
+          "required": false
+        },
+        "HELIX_LOCAL__HELIX_URL": {
+          "defaultValue": "http://${{HelixDB.RAILWAY_PRIVATE_DOMAIN}}:8080",
+          "description": "HelixDB on the private network: every ontology's loads share it.",
+          "required": false
+        },
+        "HELIX_LOCAL__S3__ENDPOINT": {
+          "defaultValue": "https://${{Storage.RAILWAY_PUBLIC_DOMAIN}}",
+          "description": "The S3 store's public URL. Browsers upload documents to URLs Foundry signs for it, so Foundry uses the same public address.",
+          "required": false
+        },
+        "ANTHROPIC_API_KEY": {
+          "defaultValue": "",
+          "description": "Optional. A Claude API key: Foundry then drafts, reads documents and answers with Claude. Leave empty to choose a provider and enter its key in Settings > AI models instead (stored sealed).",
+          "required": false
+        },
+        "OPENAI_API_KEY": {
+          "defaultValue": "",
+          "description": "Optional. An OpenAI API key, used when ANTHROPIC_API_KEY is empty. Leave empty to choose in Settings > AI models.",
+          "required": false
+        },
+        "FOUNDRY_WORK_MAX_GB": {
+          "defaultValue": "2",
+          "description": "GiB of snapshots one draft or one load may unpack into the /work volume (upstream: 6). Keep two of them below the volume size.",
+          "required": false
+        },
+        "FOUNDRY_STARTUP_WAIT_SECONDS": {
+          "defaultValue": "600",
+          "description": "Seconds the start waits for MySQL and the store before starting Foundry anyway (keep it below the healthcheck timeout).",
+          "required": false
+        },
+        "RAILWAY_DEPLOYMENT_DRAINING_SECONDS": {
+          "defaultValue": "120",
+          "description": "Seconds between SIGTERM and SIGKILL on redeploy: a load or question in flight finishes or is handed back (the agent drains for 100 s).",
+          "required": false
+        }
+      }
     },
-    "BASIC_AUTH_PASSWORD": {
-     "defaultValue": "${{secret(24, \"abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789\")}}",
-     "description": "Password for the browser's sign-in prompt, generated at deploy. Foundry has no sign-in of its own, so this protects the whole install; at least 12 characters or the gateway refuses to start.",
-     "required": false
+    "HelixDB": {
+      "icon": "https://cdn.jsdelivr.net/npm/lucide-static@1.59.0/icons/share-2.svg",
+      "source": {
+        "image": "ghcr.io/helixdb/helixdb:v0.0.14@sha256:1470a3bce07866367f1d2a5b250ec9c3244d62356ac27d537023ef5492a8f62a"
+      },
+      "startCommand": null,
+      "preDeployCommand": null,
+      "healthcheckPath": "/readyz",
+      "healthcheckTimeout": 300,
+      "restartPolicyType": "ON_FAILURE",
+      "numReplicas": 1,
+      "cronSchedule": null,
+      "publicDomain": false,
+      "targetPort": null,
+      "tcpProxy": null,
+      "volume": {
+        "mountPath": "/var/lib/helix"
+      },
+      "variables": {
+        "PORT": {
+          "defaultValue": "8080",
+          "description": "Port Railway health-checks (HelixDB's HTTP API).",
+          "required": false
+        },
+        "HELIX_HTTP_ADDR": {
+          "defaultValue": "[::]:8080",
+          "description": "HelixDB's HTTP listener (IPv4 and IPv6 on the private network). It checks no key: never add a public domain or TCP proxy.",
+          "required": false
+        },
+        "HELIX_DATA_DIR": {
+          "defaultValue": "/var/lib/helix",
+          "description": "Where HelixDB keeps its database (the volume).",
+          "required": false
+        },
+        "HELIX_TELEMETRY_LEVEL": {
+          "defaultValue": "off",
+          "description": "No telemetry, as upstream's compose file runs it.",
+          "required": false
+        },
+        "RAILWAY_RUN_UID": {
+          "defaultValue": "0",
+          "description": "Run as root so HelixDB can write the root-owned Railway volume (the image's user is 65532 and has no shell to change it).",
+          "required": false
+        },
+        "RAILWAY_DEPLOYMENT_DRAINING_SECONDS": {
+          "defaultValue": "30",
+          "description": "Time HelixDB gets to drain and close its storage on redeploy.",
+          "required": false
+        }
+      },
+      "restartPolicyMaxRetries": 10
     },
-    "FOUNDRY_AGENT_ENDPOINTS": {
-     "defaultValue": "on",
-     "description": "on: /mcp and /v1/ontologies/... go straight to Foundry, which requires FOUNDRY_LOCAL_TOKEN as a bearer token (for Claude Code, Cursor and other MCP clients). off: they stay behind the password like the rest.",
-     "required": false
+    "Storage": {
+      "icon": "https://cdn.jsdelivr.net/npm/lucide-static@1.59.0/icons/hard-drive.svg",
+      "source": {
+        "repo": "baranberkay96/helix-foundry-railway",
+        "rootDirectory": "/services/storage"
+      },
+      "startCommand": null,
+      "preDeployCommand": null,
+      "healthcheckPath": "/healthz",
+      "healthcheckTimeout": 300,
+      "restartPolicyType": "ALWAYS",
+      "numReplicas": 1,
+      "cronSchedule": null,
+      "publicDomain": true,
+      "targetPort": 8333,
+      "tcpProxy": null,
+      "volume": {
+        "mountPath": "/data"
+      },
+      "variables": {
+        "FOUNDRY_STORAGE_IMAGE": {
+          "defaultValue": "chrislusf/seaweedfs:4.47@sha256:ce9e796f1fe6f06968f4c04bdaf8f678dad9c8acdfef3d244133d71bfa6bf882",
+          "description": "SeaweedFS image this service's Docker build starts FROM (the version upstream's compose file pins).",
+          "required": false
+        },
+        "PORT": {
+          "defaultValue": "8333",
+          "description": "Port of the S3 API (public domain target and healthcheck).",
+          "required": false
+        },
+        "FOUNDRY_S3_SECRET": {
+          "defaultValue": "${{secret(64, \"0123456789abcdef\")}}",
+          "description": "Secret of the store's one S3 identity, foundry, generated at deploy. Foundry references it.",
+          "required": false
+        },
+        "STORAGE_ALLOWED_ORIGINS": {
+          "defaultValue": "https://${{Gateway.RAILWAY_PUBLIC_DOMAIN}}",
+          "description": "Comma-separated origins whose pages may upload (CORS). Add your custom domain here if you give the Gateway one.",
+          "required": false
+        },
+        "STORAGE_VOLUME_SIZE_MB": {
+          "defaultValue": "256",
+          "description": "Size of each SeaweedFS volume file. Small files fit a 5 GB Railway volume; raise it on large volumes.",
+          "required": false
+        },
+        "RAILWAY_DEPLOYMENT_DRAINING_SECONDS": {
+          "defaultValue": "60",
+          "description": "Time SeaweedFS gets to stop cleanly on redeploy (it takes about 20 s).",
+          "required": false
+        }
+      }
     },
-    "FOUNDRY_SITE_UPSTREAM": {
-     "defaultValue": "${{Site.RAILWAY_PRIVATE_DOMAIN}}:3000",
-     "description": "Foundry web app on the private network.",
-     "required": false
+    "MySQL": {
+      "icon": "https://devicons.railway.com/i/mysql.svg",
+      "source": {
+        "image": "mysql:8.0.46@sha256:7dcddc01f13bab2f15cde676d44d01f61fc9f99fe7785e86196dfc07d358ae2b"
+      },
+      "startCommand": "docker-entrypoint.sh mysqld --innodb-use-native-aio=0 --disable-log-bin --performance_schema=0 --innodb-buffer-pool-size=256M --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci",
+      "preDeployCommand": null,
+      "healthcheckPath": null,
+      "healthcheckTimeout": null,
+      "restartPolicyType": "ON_FAILURE",
+      "numReplicas": 1,
+      "cronSchedule": null,
+      "publicDomain": false,
+      "targetPort": null,
+      "tcpProxy": null,
+      "volume": {
+        "mountPath": "/var/lib/mysql"
+      },
+      "variables": {
+        "MYSQLHOST": {
+          "defaultValue": "${{RAILWAY_PRIVATE_DOMAIN}}",
+          "description": "Railway Private Domain Name.",
+          "required": false
+        },
+        "MYSQLPORT": {
+          "defaultValue": "3306",
+          "description": "MySQL port.",
+          "required": false
+        },
+        "MYSQLUSER": {
+          "defaultValue": "root",
+          "description": "MySQL user, used for the Data panel.",
+          "required": false
+        },
+        "MYSQL_URL": {
+          "defaultValue": "mysql://${{ MYSQLUSER }}:${{ MYSQL_ROOT_PASSWORD }}@${{ RAILWAY_PRIVATE_DOMAIN }}:3306/${{ MYSQL_DATABASE }}",
+          "description": "URL to connect to MySQL.",
+          "required": false
+        },
+        "MYSQLDATABASE": {
+          "defaultValue": "${{ MYSQL_DATABASE }}",
+          "description": "Default database, used for Data panel.",
+          "required": false
+        },
+        "MYSQLPASSWORD": {
+          "defaultValue": "${{ MYSQL_ROOT_PASSWORD }}",
+          "description": "Root password, used for Data panel.",
+          "required": false
+        },
+        "MYSQL_DATABASE": {
+          "defaultValue": "railway",
+          "description": "Database to be created on image startup (Foundry's tables).",
+          "required": false
+        },
+        "MYSQL_ROOT_PASSWORD": {
+          "defaultValue": "${{ secret(32, \"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\") }}",
+          "description": "Root password for MySQL DB, generated at deploy (letters only: it sits in Foundry's DSN unescaped).",
+          "required": false
+        },
+        "RAILWAY_DEPLOYMENT_DRAINING_SECONDS": {
+          "defaultValue": "30",
+          "description": "Time MySQL gets to shut down cleanly on redeploy.",
+          "required": false
+        }
+      },
+      "restartPolicyMaxRetries": 10
     },
-    "FOUNDRY_API_UPSTREAM": {
-     "defaultValue": "${{Foundry.RAILWAY_PRIVATE_DOMAIN}}:8081",
-     "description": "Foundry API (MCP and HTTP Ask) on the private network.",
-     "required": false
-    },
-    "RAILWAY_DEPLOYMENT_DRAINING_SECONDS": {
-     "defaultValue": "15",
-     "description": "Seconds between SIGTERM and SIGKILL on redeploy.",
-     "required": false
+    "Acme DB": {
+      "icon": "https://devicons.railway.com/i/postgresql.svg",
+      "source": {
+        "repo": "baranberkay96/helix-foundry-railway",
+        "rootDirectory": "/services/acme-db"
+      },
+      "startCommand": null,
+      "preDeployCommand": null,
+      "healthcheckPath": null,
+      "healthcheckTimeout": null,
+      "restartPolicyType": "ON_FAILURE",
+      "numReplicas": 1,
+      "cronSchedule": null,
+      "publicDomain": false,
+      "targetPort": null,
+      "tcpProxy": null,
+      "volume": {
+        "mountPath": "/var/lib/postgresql/data"
+      },
+      "variables": {
+        "ACME_DB_IMAGE": {
+          "defaultValue": "ghcr.io/railwayapp-templates/postgres-ssl:18@sha256:4fc833b43d2aaf6ecc9b18615f5533602b723a32d0e2efe2dae8ca0f7217c863",
+          "description": "Railway Postgres image this service's Docker build starts FROM.",
+          "required": false
+        },
+        "PGDATA": {
+          "defaultValue": "/var/lib/postgresql/data/pgdata",
+          "description": "Location where the database will be initialized.",
+          "required": false
+        },
+        "PGHOST": {
+          "defaultValue": "${{RAILWAY_PRIVATE_DOMAIN}}",
+          "description": "Railway Private Domain Name (the Site writes it into Use the sample).",
+          "required": false
+        },
+        "PGPORT": {
+          "defaultValue": "5432",
+          "description": "Port to connect to Postgres (the sample expects 5432).",
+          "required": false
+        },
+        "PGUSER": {
+          "defaultValue": "${{ POSTGRES_USER }}",
+          "description": "Required variable for Data panel.",
+          "required": false
+        },
+        "PGDATABASE": {
+          "defaultValue": "${{POSTGRES_DB}}",
+          "description": "Required variable for the data panel.",
+          "required": false
+        },
+        "PGPASSWORD": {
+          "defaultValue": "${{POSTGRES_PASSWORD}}",
+          "description": "Required variable for Data panel.",
+          "required": false
+        },
+        "POSTGRES_DB": {
+          "defaultValue": "acme",
+          "description": "Database holding Acme Corp's sample tables. Keep acme: Foundry's Use the sample connects to it by that name.",
+          "required": false
+        },
+        "DATABASE_URL": {
+          "defaultValue": "postgresql://${{PGUSER}}:${{POSTGRES_PASSWORD}}@${{RAILWAY_PRIVATE_DOMAIN}}:5432/${{PGDATABASE}}",
+          "description": "Superuser connection string (private network).",
+          "required": false
+        },
+        "POSTGRES_USER": {
+          "defaultValue": "postgres",
+          "description": "Superuser created on first boot.",
+          "required": false
+        },
+        "POSTGRES_PASSWORD": {
+          "defaultValue": "${{ secret(32, \"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\") }}",
+          "description": "Superuser password, generated at deploy. Foundry uses the read-only login acme_reader instead (password acme, built into the web app; made-up data, private network only).",
+          "required": false
+        },
+        "SSL_CERT_DAYS": {
+          "defaultValue": "820",
+          "description": "SSL certificate expiry in days.",
+          "required": false
+        },
+        "RAILWAY_DEPLOYMENT_DRAINING_SECONDS": {
+          "defaultValue": "30",
+          "description": "Allow Postgres to cleanly shut down.",
+          "required": false
+        }
+      },
+      "restartPolicyMaxRetries": 10
     }
-   }
-  },
-  "Site": {
-   "icon": "https://cdn.jsdelivr.net/npm/lucide-static@1.59.0/icons/app-window.svg",
-   "source": {
-    "repo": "baranberkay96/helix-foundry-railway",
-    "rootDirectory": "/services/site"
-   },
-   "startCommand": null,
-   "preDeployCommand": null,
-   "healthcheckPath": "/ask",
-   "healthcheckTimeout": 300,
-   "restartPolicyType": "ALWAYS",
-   "numReplicas": 1,
-   "cronSchedule": null,
-   "publicDomain": false,
-   "targetPort": null,
-   "tcpProxy": null,
-   "volume": null,
-   "variables": {
-    "FOUNDRY_SITE_IMAGE": {
-     "defaultValue": "ghcr.io/helixdb/foundry-site:0.1.3@sha256:ac69e52df43e99b5c49879399f1f20f475a8fcdf7f43e66f27ca6b6b11da74ae",
-     "description": "Foundry web app image this service's Docker build starts FROM (HelixDB's release image, unchanged). Upgrade it together with FOUNDRY_IMAGE and FOUNDRY_AGENT_IMAGE on Foundry.",
-     "required": false
-    },
-    "PORT": {
-     "defaultValue": "3000",
-     "description": "Port the web app listens on (healthcheck).",
-     "required": false
-    },
-    "HOSTNAME": {
-     "defaultValue": "::",
-     "description": "Bind address of the Next.js server (:: = IPv4 and IPv6 on the private network).",
-     "required": false
-    },
-    "HELIX_WFE_ORIGIN": {
-     "defaultValue": "http://${{Foundry.RAILWAY_PRIVATE_DOMAIN}}:8081",
-     "description": "Foundry API on the private network; the web app's /papi forwards to it with the owner token.",
-     "required": false
-    },
-    "FOUNDRY_ORIGIN": {
-     "defaultValue": "http://localhost:3000",
-     "description": "The origin the web app believes it is served at. Keep it: the local build accepts only loopback origins, and the Gateway presents every request as localhost:3000.",
-     "required": false
-    },
-    "FOUNDRY_LOCAL_TOKEN": {
-     "defaultValue": "${{Foundry.FOUNDRY_LOCAL_TOKEN}}",
-     "description": "Owner token the web app sends to Foundry (set on Foundry).",
-     "required": false
-    },
-    "FOUNDRY_SAMPLE_DB_HOST": {
-     "defaultValue": "${{Acme DB.RAILWAY_PRIVATE_DOMAIN}}",
-     "description": "Host that Use the sample connects to (the Acme DB service), written into the web app at start in place of upstream's acme-db.",
-     "required": false
-    },
-    "NEXT_TELEMETRY_DISABLED": {
-     "defaultValue": "1",
-     "description": "No Next.js telemetry.",
-     "required": false
-    },
-    "RAILWAY_DEPLOYMENT_DRAINING_SECONDS": {
-     "defaultValue": "15",
-     "description": "Seconds between SIGTERM and SIGKILL on redeploy.",
-     "required": false
-    }
-   }
-  },
-  "Foundry": {
-   "icon": "https://cdn.jsdelivr.net/npm/lucide-static@1.59.0/icons/workflow.svg",
-   "source": {
-    "repo": "baranberkay96/helix-foundry-railway",
-    "rootDirectory": "/services/foundry"
-   },
-   "startCommand": null,
-   "preDeployCommand": null,
-   "healthcheckPath": "/readyz",
-   "healthcheckTimeout": 1200,
-   "restartPolicyType": "ALWAYS",
-   "numReplicas": 1,
-   "cronSchedule": null,
-   "publicDomain": false,
-   "targetPort": null,
-   "tcpProxy": null,
-   "volume": {
-    "mountPath": "/work"
-   },
-   "variables": {
-    "FOUNDRY_IMAGE": {
-     "defaultValue": "ghcr.io/helixdb/foundry:0.1.2@sha256:5adf4ca93c2b53661275ff3b9a4c5054d8ee42acfa569c4dcbfd2c8b6b27ba62",
-     "description": "Foundry backend image the foundry binary and its config are copied from at build (HelixDB's release, unchanged).",
-     "required": false
-    },
-    "FOUNDRY_AGENT_IMAGE": {
-     "defaultValue": "ghcr.io/helixdb/ontology-agent:0.1.1@sha256:d5a543bee8d9f403fa898ad5773b9a3d95b394f31396b36ec2b13448af07faa8",
-     "description": "Ontology agent image this service's Docker build starts FROM (HelixDB's release, unchanged).",
-     "required": false
-    },
-    "PORT": {
-     "defaultValue": "8083",
-     "description": "Port of Foundry's health listener, which Railway health-checks (/readyz). The API listens on 8081 (private).",
-     "required": false
-    },
-    "FOUNDRY_LOCAL_TOKEN": {
-     "defaultValue": "${{secret(64, \"0123456789abcdef\")}}",
-     "description": "Owner token, generated at deploy: the web app sends it to Foundry, and MCP clients send it as Authorization: Bearer. Whoever has it controls this install; at least 32 characters.",
-     "required": false
-    },
-    "FOUNDRY_CONNECTOR_KEY": {
-     "defaultValue": "${{secret(64, \"0123456789abcdef\")}}",
-     "description": "Key that seals every database password and API key given to Foundry, generated at deploy. Never change it: credentials sealed with it become unreadable. Back it up with your data.",
-     "required": false
-    },
-    "FOUNDRY_S3_SECRET": {
-     "defaultValue": "${{Storage.FOUNDRY_S3_SECRET}}",
-     "description": "Secret of the store's foundry identity (set on Storage).",
-     "required": false
-    },
-    "HELIX_DB_DSN": {
-     "defaultValue": "root:${{MySQL.MYSQL_ROOT_PASSWORD}}@tcp(${{MySQL.MYSQLHOST}}:${{MySQL.MYSQLPORT}})/${{MySQL.MYSQL_DATABASE}}?parseTime=true&multiStatements=true",
-     "description": "Foundry's MySQL database (Go DSN). Foundry migrates it at every start.",
-     "required": false
-    },
-    "HELIX_LOCAL__SITE_ORIGIN": {
-     "defaultValue": "https://${{Gateway.RAILWAY_PUBLIC_DOMAIN}}",
-     "description": "Public URL of Foundry (the Gateway): links given to agents start here, and MCP and HTTP Ask answer only for this host. Change it when you add a custom domain.",
-     "required": false
-    },
-    "HELIX_LOCAL__HELIX_URL": {
-     "defaultValue": "http://${{HelixDB.RAILWAY_PRIVATE_DOMAIN}}:8080",
-     "description": "HelixDB on the private network: every ontology's loads share it.",
-     "required": false
-    },
-    "HELIX_LOCAL__S3__ENDPOINT": {
-     "defaultValue": "https://${{Storage.RAILWAY_PUBLIC_DOMAIN}}",
-     "description": "The S3 store's public URL. Browsers upload documents to URLs Foundry signs for it, so Foundry uses the same public address.",
-     "required": false
-    },
-    "ANTHROPIC_API_KEY": {
-     "defaultValue": "",
-     "description": "Optional. A Claude API key: Foundry then drafts, reads documents and answers with Claude. Leave empty to choose a provider and enter its key in Settings > AI models instead (stored sealed).",
-     "required": false
-    },
-    "OPENAI_API_KEY": {
-     "defaultValue": "",
-     "description": "Optional. An OpenAI API key, used when ANTHROPIC_API_KEY is empty. Leave empty to choose in Settings > AI models.",
-     "required": false
-    },
-    "FOUNDRY_WORK_MAX_GB": {
-     "defaultValue": "2",
-     "description": "GiB of snapshots one draft or one load may unpack into the /work volume (upstream: 6). Keep two of them below the volume size.",
-     "required": false
-    },
-    "FOUNDRY_STARTUP_WAIT_SECONDS": {
-     "defaultValue": "600",
-     "description": "Seconds the start waits for MySQL and the store before starting Foundry anyway (keep it below the healthcheck timeout).",
-     "required": false
-    },
-    "RAILWAY_DEPLOYMENT_DRAINING_SECONDS": {
-     "defaultValue": "120",
-     "description": "Seconds between SIGTERM and SIGKILL on redeploy: a load or question in flight finishes or is handed back (the agent drains for 100 s).",
-     "required": false
-    }
-   }
-  },
-  "HelixDB": {
-   "icon": "https://cdn.jsdelivr.net/npm/lucide-static@1.59.0/icons/share-2.svg",
-   "source": {
-    "image": "ghcr.io/helixdb/helixdb:v0.0.14@sha256:1470a3bce07866367f1d2a5b250ec9c3244d62356ac27d537023ef5492a8f62a"
-   },
-   "startCommand": null,
-   "preDeployCommand": null,
-   "healthcheckPath": "/readyz",
-   "healthcheckTimeout": 300,
-   "restartPolicyType": "ON_FAILURE",
-   "numReplicas": 1,
-   "cronSchedule": null,
-   "publicDomain": false,
-   "targetPort": null,
-   "tcpProxy": null,
-   "volume": {
-    "mountPath": "/var/lib/helix"
-   },
-   "variables": {
-    "PORT": {
-     "defaultValue": "8080",
-     "description": "Port Railway health-checks (HelixDB's HTTP API).",
-     "required": false
-    },
-    "HELIX_HTTP_ADDR": {
-     "defaultValue": "[::]:8080",
-     "description": "HelixDB's HTTP listener (IPv4 and IPv6 on the private network). It checks no key: never add a public domain or TCP proxy.",
-     "required": false
-    },
-    "HELIX_DATA_DIR": {
-     "defaultValue": "/var/lib/helix",
-     "description": "Where HelixDB keeps its database (the volume).",
-     "required": false
-    },
-    "HELIX_TELEMETRY_LEVEL": {
-     "defaultValue": "off",
-     "description": "No telemetry, as upstream's compose file runs it.",
-     "required": false
-    },
-    "RAILWAY_RUN_UID": {
-     "defaultValue": "0",
-     "description": "Run as root so HelixDB can write the root-owned Railway volume (the image's user is 65532 and has no shell to change it).",
-     "required": false
-    },
-    "RAILWAY_DEPLOYMENT_DRAINING_SECONDS": {
-     "defaultValue": "30",
-     "description": "Time HelixDB gets to drain and close its storage on redeploy.",
-     "required": false
-    }
-   },
-   "restartPolicyMaxRetries": 10
-  },
-  "Storage": {
-   "icon": "https://cdn.jsdelivr.net/npm/lucide-static@1.59.0/icons/hard-drive.svg",
-   "source": {
-    "repo": "baranberkay96/helix-foundry-railway",
-    "rootDirectory": "/services/storage"
-   },
-   "startCommand": null,
-   "preDeployCommand": null,
-   "healthcheckPath": "/healthz",
-   "healthcheckTimeout": 300,
-   "restartPolicyType": "ALWAYS",
-   "numReplicas": 1,
-   "cronSchedule": null,
-   "publicDomain": true,
-   "targetPort": 8333,
-   "tcpProxy": null,
-   "volume": {
-    "mountPath": "/data"
-   },
-   "variables": {
-    "FOUNDRY_STORAGE_IMAGE": {
-     "defaultValue": "chrislusf/seaweedfs:4.47@sha256:ce9e796f1fe6f06968f4c04bdaf8f678dad9c8acdfef3d244133d71bfa6bf882",
-     "description": "SeaweedFS image this service's Docker build starts FROM (the version upstream's compose file pins).",
-     "required": false
-    },
-    "PORT": {
-     "defaultValue": "8333",
-     "description": "Port of the S3 API (public domain target and healthcheck).",
-     "required": false
-    },
-    "FOUNDRY_S3_SECRET": {
-     "defaultValue": "${{secret(64, \"0123456789abcdef\")}}",
-     "description": "Secret of the store's one S3 identity, foundry, generated at deploy. Foundry references it.",
-     "required": false
-    },
-    "STORAGE_ALLOWED_ORIGINS": {
-     "defaultValue": "https://${{Gateway.RAILWAY_PUBLIC_DOMAIN}}",
-     "description": "Comma-separated origins whose pages may upload (CORS). Add your custom domain here if you give the Gateway one.",
-     "required": false
-    },
-    "STORAGE_VOLUME_SIZE_MB": {
-     "defaultValue": "256",
-     "description": "Size of each SeaweedFS volume file. Small files fit a 5 GB Railway volume; raise it on large volumes.",
-     "required": false
-    },
-    "RAILWAY_DEPLOYMENT_DRAINING_SECONDS": {
-     "defaultValue": "60",
-     "description": "Time SeaweedFS gets to stop cleanly on redeploy (it takes about 20 s).",
-     "required": false
-    }
-   }
-  },
-  "MySQL": {
-   "icon": "https://devicons.railway.com/i/mysql.svg",
-   "source": {
-    "image": "mysql:8.0.46@sha256:7dcddc01f13bab2f15cde676d44d01f61fc9f99fe7785e86196dfc07d358ae2b"
-   },
-   "startCommand": "docker-entrypoint.sh mysqld --innodb-use-native-aio=0 --disable-log-bin --performance_schema=0 --innodb-buffer-pool-size=256M --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci",
-   "preDeployCommand": null,
-   "healthcheckPath": null,
-   "healthcheckTimeout": null,
-   "restartPolicyType": "ON_FAILURE",
-   "numReplicas": 1,
-   "cronSchedule": null,
-   "publicDomain": false,
-   "targetPort": null,
-   "tcpProxy": null,
-   "volume": {
-    "mountPath": "/var/lib/mysql"
-   },
-   "variables": {
-    "MYSQLHOST": {
-     "defaultValue": "${{RAILWAY_PRIVATE_DOMAIN}}",
-     "description": "Railway Private Domain Name.",
-     "required": false
-    },
-    "MYSQLPORT": {
-     "defaultValue": "3306",
-     "description": "MySQL port.",
-     "required": false
-    },
-    "MYSQLUSER": {
-     "defaultValue": "root",
-     "description": "MySQL user, used for the Data panel.",
-     "required": false
-    },
-    "MYSQL_URL": {
-     "defaultValue": "mysql://${{ MYSQLUSER }}:${{ MYSQL_ROOT_PASSWORD }}@${{ RAILWAY_PRIVATE_DOMAIN }}:3306/${{ MYSQL_DATABASE }}",
-     "description": "URL to connect to MySQL.",
-     "required": false
-    },
-    "MYSQLDATABASE": {
-     "defaultValue": "${{ MYSQL_DATABASE }}",
-     "description": "Default database, used for Data panel.",
-     "required": false
-    },
-    "MYSQLPASSWORD": {
-     "defaultValue": "${{ MYSQL_ROOT_PASSWORD }}",
-     "description": "Root password, used for Data panel.",
-     "required": false
-    },
-    "MYSQL_DATABASE": {
-     "defaultValue": "railway",
-     "description": "Database to be created on image startup (Foundry's tables).",
-     "required": false
-    },
-    "MYSQL_ROOT_PASSWORD": {
-     "defaultValue": "${{ secret(32, \"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\") }}",
-     "description": "Root password for MySQL DB, generated at deploy (letters only: it sits in Foundry's DSN unescaped).",
-     "required": false
-    },
-    "RAILWAY_DEPLOYMENT_DRAINING_SECONDS": {
-     "defaultValue": "30",
-     "description": "Time MySQL gets to shut down cleanly on redeploy.",
-     "required": false
-    }
-   },
-   "restartPolicyMaxRetries": 10
-  },
-  "Acme DB": {
-   "icon": "https://devicons.railway.com/i/postgresql.svg",
-   "source": {
-    "repo": "baranberkay96/helix-foundry-railway",
-    "rootDirectory": "/services/acme-db"
-   },
-   "startCommand": null,
-   "preDeployCommand": null,
-   "healthcheckPath": null,
-   "healthcheckTimeout": null,
-   "restartPolicyType": "ON_FAILURE",
-   "numReplicas": 1,
-   "cronSchedule": null,
-   "publicDomain": false,
-   "targetPort": null,
-   "tcpProxy": null,
-   "volume": {
-    "mountPath": "/var/lib/postgresql/data"
-   },
-   "variables": {
-    "ACME_DB_IMAGE": {
-     "defaultValue": "ghcr.io/railwayapp-templates/postgres-ssl:18@sha256:4fc833b43d2aaf6ecc9b18615f5533602b723a32d0e2efe2dae8ca0f7217c863",
-     "description": "Railway Postgres image this service's Docker build starts FROM.",
-     "required": false
-    },
-    "PGDATA": {
-     "defaultValue": "/var/lib/postgresql/data/pgdata",
-     "description": "Location where the database will be initialized.",
-     "required": false
-    },
-    "PGHOST": {
-     "defaultValue": "${{RAILWAY_PRIVATE_DOMAIN}}",
-     "description": "Railway Private Domain Name (the Site writes it into Use the sample).",
-     "required": false
-    },
-    "PGPORT": {
-     "defaultValue": "5432",
-     "description": "Port to connect to Postgres (the sample expects 5432).",
-     "required": false
-    },
-    "PGUSER": {
-     "defaultValue": "${{ POSTGRES_USER }}",
-     "description": "Required variable for Data panel.",
-     "required": false
-    },
-    "PGDATABASE": {
-     "defaultValue": "${{POSTGRES_DB}}",
-     "description": "Required variable for the data panel.",
-     "required": false
-    },
-    "PGPASSWORD": {
-     "defaultValue": "${{POSTGRES_PASSWORD}}",
-     "description": "Required variable for Data panel.",
-     "required": false
-    },
-    "POSTGRES_DB": {
-     "defaultValue": "acme",
-     "description": "Database holding Acme Corp's sample tables. Keep acme: Foundry's Use the sample connects to it by that name.",
-     "required": false
-    },
-    "DATABASE_URL": {
-     "defaultValue": "postgresql://${{PGUSER}}:${{POSTGRES_PASSWORD}}@${{RAILWAY_PRIVATE_DOMAIN}}:5432/${{PGDATABASE}}",
-     "description": "Superuser connection string (private network).",
-     "required": false
-    },
-    "POSTGRES_USER": {
-     "defaultValue": "postgres",
-     "description": "Superuser created on first boot.",
-     "required": false
-    },
-    "POSTGRES_PASSWORD": {
-     "defaultValue": "${{ secret(32, \"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\") }}",
-     "description": "Superuser password, generated at deploy. Foundry uses the read-only login acme_reader instead (password acme, built into the web app; made-up data, private network only).",
-     "required": false
-    },
-    "SSL_CERT_DAYS": {
-     "defaultValue": "820",
-     "description": "SSL certificate expiry in days.",
-     "required": false
-    },
-    "RAILWAY_DEPLOYMENT_DRAINING_SECONDS": {
-     "defaultValue": "30",
-     "description": "Allow Postgres to cleanly shut down.",
-     "required": false
-    }
-   },
-   "restartPolicyMaxRetries": 10
   }
- }
 }
