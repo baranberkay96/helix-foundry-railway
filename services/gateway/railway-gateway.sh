@@ -12,8 +12,13 @@ die() { echo "railway-gateway: $*" >&2; exit 1; }
 : "${FOUNDRY_API_UPSTREAM:?FOUNDRY_API_UPSTREAM must be set (e.g. foundry.railway.internal:8081)}"
 
 password=${BASIC_AUTH_PASSWORD:-}
-# Fail closed: without a real password the whole install is open.
-[ "${#password}" -ge 12 ] || die "BASIC_AUTH_PASSWORD must be at least 12 characters. Refusing to start without it: Foundry has no sign-in of its own."
+# Fail closed without failing the deploy: Foundry has no sign-in of its own, so an
+# unusable password (under 12 characters, or over bcrypt's 72 bytes) locks the
+# whole install with a random password nobody knows.
+if [ "${#password}" -lt 12 ] || [ "$(printf '%s' "$password" | wc -c)" -gt 72 ]; then
+	warn "BASIC_AUTH_PASSWORD must be 12-72 characters. The site is locked until you set it in the Gateway service Variables and redeploy."
+	password=$(head -c 32 /dev/urandom | od -An -tx1 | tr -d ' \n')
+fi
 
 user=${BASIC_AUTH_USERNAME:-}
 case "$user" in
